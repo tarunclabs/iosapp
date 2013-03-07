@@ -83,7 +83,7 @@ $content='
 <div class="container" align="center">
 
      <h2 class="form-signin-heading" align="center">Welcome!</h2>
-     <br><a href="itms-services://?action=download-manifest&url=http://107.21.224.44/tarun/clicklabs/app/'.$t.'/myApp.plist">
+     <br><a href="itms-services://?action=download-manifest&url=http://107.21.224.44/tarun/iosapp/app/'.$t.'/myApp.plist">
       <center><button button="submit">Click to install '.$AppName.'</button></center></a><br><br>
       <a href="../../logout.php"><button class="btn btn-primary type="button"">Logout</button></a>
    
