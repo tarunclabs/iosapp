@@ -3,7 +3,6 @@ include("conn.php");
 session_start();
 if(isset($_SESSION['admin']))
 { 
-	$_SESSION['authenticated']=1;
 	$AppName=$_POST['appname'];
 	$BundleIdentifier=$_POST['bid'];
 	$BundleVersion=$_POST['bver'];
@@ -33,8 +32,8 @@ if(isset($_SESSION['admin']))
 	
 	$j=$_FILES["file"]["type"];
 
-// if($j == "application/octet-stream")
-//  {
+ if($j == "application/octet-stream")
+  {
      if(file_exists("app/$t/$i"))
 	{
 	header("location:app.php?a=1");
@@ -46,11 +45,7 @@ if(isset($_SESSION['admin']))
 	 copy("css/bootstrap.css", "app/$t/bootstrap.css");
 	 copy("css/bootstrap1.css", "app/$t/bootstrap1.css");
 		$flag1=0;
-	 $content = '<?php
-	              session_start();
-				  if($_SESSION["authenticated"])
-	              {
-	 			?>
+	 $content = '
 	 <html>
 
  <head>
@@ -69,24 +64,14 @@ if(isset($_SESSION['admin']))
 
 
 </body>
-</html><?php
- } 
- else
- {
-	 header("location: ../../logout.php");
- }
- ?>';
+</html>';
 
 $fp = fopen("app/$t/submitted.php","wb");
 fwrite($fp,$content);
 fclose($fp);
 
 $fp = fopen("app/$t/home.php","wb");
-$content='<?php
-	              session_start();
-				  if($_SESSION["authenticated"])
-	              {
-	 			?>
+$content='
 <html>
 <head>
 <link href="bootstrap.css" rel="stylesheet">
@@ -105,14 +90,7 @@ $content='<?php
       </div>
       
  </body>
- </html>
- <?php
- } 
- else
- {
-	 header("location: ../../logout.php");
- }
- ?>';
+ </html>';
 fwrite($fp,$content);
 fclose($fp);
 
@@ -191,11 +169,11 @@ fclose($fp);
 							}
 					}
       }
-  // }
-//    else
-//    {	
-//	header("location:app.php?g=1");
-//	}
+   }
+    else
+    {	
+	header("location:app.php?g=1");
+	}
 }
 else
 {
